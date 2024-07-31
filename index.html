@@ -4,24 +4,7 @@
         <title>ashton website</title>
         <link rel="icon" type="image/x-icon" href="mes/1.jpg">
 
-        <style> /*----------------< GENERAL >--------------------*/
-            body {
-                text-align: center;
-                color: white;
-                background-color: black;
-                font-family: 'Times New Roman', Times, serif;
-                background-image: url('background.png');
-                background-attachment: fixed;
-            }
-            #title {
-                margin-top: 150px;
-                font-weight: normal;
-            }
-            #title span {
-                font-size: 80px;
-                font-weight: bold;
-            }
-        </style>
+        <link rel="stylesheet" href="general.css">
 
         <style> /*------------< ME IMAGE SLIDESHOW >---------------*/
             :root {
@@ -47,21 +30,6 @@
                 margin-right: 10px;
             }
         </style>
-
-        <style> /*----------------------< MAIN >---------------------*/
-            #main {
-                width: 50%;
-                margin-left: calc(25% - 10px - 5px);
-                margin-top: 100px;
-                margin-bottom: 90px; 
-            } 
-            #main > div {
-                margin-bottom: 40px; 
-                padding: 10px;
-                background-color: black;
-                border: 5px white solid;
-            }
-        </style>
         
     </head>
 
@@ -83,7 +51,8 @@
             <div>
                 <h1>About the Website</h1>
                 <p>
-                    i created this website because i was bored
+                    i created this website because i was bored<br><br>
+                    check out the blog <a href="blog.html">here</a>
                 </p>
             </div>
 
@@ -101,87 +70,58 @@
 
     </body>
 
-    <script> /*--------------< RAINBOW TEXT >---------------*/
-
-        const title = document.getElementById('title');
-        const main_panels = document.getElementById('main').children;
-
-        const s = 1;
-        const whiteness = 100;
-        let rgb = [0, 0, 0];
-        let frames = 0;
-
-        let oldtime = Date.now();
-
-        function change() {
-            for (let i in rgb) {
-                rgb[i] = ((Math.sin(frames*s-i*2*Math.PI/3) + 1) * (255/2)) | 0;
-            }
-            frames += (Date.now()-oldtime)/500;
-
-            title.style.color = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
-            for (let panel of main_panels) {
-                panel.style.border = `5px rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]}) solid`;
-            }
-
-            oldtime = Date.now();
-        }
-
-    </script>
+    <script src="rainbowtext.js"></script>
 
     <script> /*----------------< ME IMAGE SLIDESHOW >-------------*/
 
-        const me_img_stretch = document.getElementById('me_img_stretch');
-        const me_img_container = document.getElementById('me_img_container');
-        const me_width = me_img_container.offsetHeight + 10;
+        function me_img_slideshow() {
+            const me_img_stretch = document.getElementById('me_img_stretch');
+            const me_img_container = document.getElementById('me_img_container');
+            const me_width = me_img_container.offsetHeight + 10;
 
-        const me_images = [
-            '1.jpg',
-            '2.jpg',
-            '3.jpg',
-            '4.jpg',
-            '5.jpg',
-            '6.jpg',
-            '7.jpg',
-            '8.jpg',
-        ];
+            const me_images = [
+                '1.jpg',
+                '2.jpg',
+                '3.jpg',
+                '4.jpg',
+                '5.jpg',
+                '6.jpg',
+                '7.jpg',
+                '8.jpg',
+            ];
 
-        function refresh_images() {
-            me_img_stretch.style.width = `${me_width * me_images.length * 2}px`;
+            function refresh_images() {
+                me_img_stretch.style.width = `${me_width * me_images.length * 2}px`;
 
-            for (let _ in [0,0]) {
-                for (let img_src of me_images) {
-                    me_img_stretch.innerHTML += `<div><img src="mes/${img_src}" width="100%" height="100%" /></div>`;
+                for (let _ in [0,0]) {
+                    for (let img_src of me_images) {
+                        me_img_stretch.innerHTML += `<div><img src="mes/${img_src}" width="100%" height="100%" /></div>`;
+                    }
                 }
             }
-        }
-        refresh_images()
+            refresh_images();
 
 
-        const middle = me_width * me_images.length;
-        const end = me_width * me_images.length * 2 - innerWidth;
-        const loop = middle - innerWidth;
-        let current = middle;
-        me_img_container.scrollTo(middle, 0);
+            const middle = me_width * me_images.length;
+            const end = me_width * me_images.length * 2 - innerWidth;
+            const loop = middle - innerWidth;
+            let current = middle;
+            me_img_container.scrollTo(middle, 0);
 
-        function move_slides() {
-            current += (Math.sin(Date.now() / 1000)) * 4 + 5;
-            if (current >= end) current = loop;
+            let oldtime = Date.now();
 
-            me_img_container.scrollTo(current, 0);
-        }
+            function move_slides() {
+                current += (Date.now()-oldtime)/8 * ((Math.sin(Date.now() / 1000)) * 4 + 5);
+                if (current >= end) current = loop + current - end;
+                oldtime = Date.now();
 
-    </script>
+                me_img_container.scrollTo(current, 0);
 
-    <script> /*--------------------< SETUP & GENERAL >----------------------*/
-
-        function frame() {
-            change();
+                requestAnimationFrame(move_slides);
+            }
             move_slides();
-            
-            requestAnimationFrame(frame);
         }
-        frame()
+        me_img_slideshow();
 
     </script>
 </html>
