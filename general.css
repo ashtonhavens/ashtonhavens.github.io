@@ -6,13 +6,17 @@ body {
     background-image: url('background.png');
     background-attachment: fixed;
 }
-#title {
+.title {
     margin-top: 150px;
     font-weight: normal;
 }
-#title span {
+.headline {
     font-size: 80px;
     font-weight: bold;
+}
+
+hr {
+    width: 90%;
 }
 
 /*------------------------< MAIN >------------------------*/
@@ -34,4 +38,12 @@ body {
     position: absolute;
     top: 50px;
     left: 50px;
+}
+
+#copyright {
+    text-align: right;
+}
+
+#copyright::before {
+    content: 'copyright ashton havens 1997 all rights reserved';
 }
