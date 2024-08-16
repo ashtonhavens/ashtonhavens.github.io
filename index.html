@@ -89,7 +89,7 @@
                 '8.jpg',
             ];
 
-            function refresh_images() {
+            const refresh_images = ()=>{
                 me_img_stretch.style.width = `${me_width * me_images.length * 2}px`;
 
                 for (let _ in [0,0]) {
@@ -109,7 +109,7 @@
 
             let oldtime = Date.now();
 
-            function move_slides() {
+            const move_slides = ()=>{
                 current += (Date.now()-oldtime)/8 * ((Math.sin(Date.now() / 1000)) * 4 + 5);
                 if (current >= end) current = loop + current - end;
                 oldtime = Date.now();
