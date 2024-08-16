@@ -8,7 +8,7 @@
 
     let oldtime = Date.now();
 
-    function cycle_text() {
+    const cycle_text = () => {
         for (let i in rgb) {
             rgb[i] = ((Math.sin(frames*s-i*2*Math.PI/3) + 1) * (255/2)) | 0;
         }
