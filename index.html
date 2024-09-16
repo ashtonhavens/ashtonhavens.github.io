@@ -12,6 +12,7 @@
             }
             #me_img_container {
                 margin-top: 100px;
+                margin-bottom: 100px;
                 width: 100%;
                 height: var(--me-height);
                 overflow: hidden;
@@ -40,7 +41,7 @@
             <div id="me_img_stretch" style="width: 0px;"></div>
         </div>
 
-        <div id="main">
+        <main>
             <div>
                 <h1>About Me</h1>
                 <p>
@@ -60,11 +61,10 @@
                 <h1>Follow Me</h1>
                 <p>
                     <a href="https://www.instagram.com/ashtonnhavens" target="_blank"><img src="insta.png" height="50">my instagrasm</a><br>
-                    <a href="https://www.roblox.com/users/215127532/profile" target="_blank"><img src="roblox.png" height="50">my roblox</a><br>
-                    <a href="discord.html" target="_blank"><img src="discord.png" height="50">my discord</a>
+                    <a href="https://github.com/ashtonhavens" target="_blank"><img src="Github_logo_svg.png" height="50">my github</a><br>
                 </p>
             </div>
-        </div>
+        </main>
 
         <p id="copyright"></p>
     </body>
@@ -87,9 +87,14 @@
                 '6.jpg',
                 '7.jpg',
                 '8.jpg',
+                'IMG_3596.png',
+                '9 (1).png',
+                '9 (2).png',
+                '9 (4).png',
+                '9 (5).png',
             ];
 
-            const refresh_images = ()=>{
+            const refresh_images = () => {
                 me_img_stretch.style.width = `${me_width * me_images.length * 2}px`;
 
                 for (let _ in [0,0]) {
@@ -109,12 +114,15 @@
 
             let oldtime = Date.now();
 
-            const move_slides = ()=>{
-                current += (Date.now()-oldtime)/8 * ((Math.sin(Date.now() / 1000)) * 4 + 5);
+            const move_slides = () => {
+                current += (Date.now()-oldtime) / 8 * ((Math.sin(Date.now() / 1000)) * 4 + 5);
                 if (current >= end) current = loop + current - end;
                 oldtime = Date.now();
 
                 me_img_container.scrollTo(current, 0);
+
+                me_img_container.style.marginTop = `${100 + Math.sin(oldtime/500)*20}px`;
+                me_img_container.style.marginBottom = `${100 - Math.sin(oldtime/500)*20}px`;
 
                 requestAnimationFrame(move_slides);
             }

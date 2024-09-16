@@ -1,6 +1,6 @@
 {
     const text_items = document.getElementsByClassName('rainbowtext');
-    const border_items = document.getElementById('main')?.children;
+    const border_items = document.getElementsByTagName('main')[0]?.children;
 
     const s = 1;
     let rgb = [0, 0, 0];
