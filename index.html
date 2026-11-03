@@ -4,7 +4,10 @@
         <title>ashton website</title>
         <link rel="icon" type="image/x-icon" href="mes/1.jpg">
 
-        <link rel="stylesheet" href="general.css">
+        <link rel="stylesheet" href="general.css?v=1">
+
+        <script src="https://kit.fontawesome.com/82a70df38e.js" crossorigin="anonymous"></script>
+
 
         <style> /*------------< ME IMAGE SLIDESHOW >---------------*/
             :root {
@@ -36,7 +39,7 @@
 
     <body> <!---------------------------< BODY >---------------------------------->
 
-        <h1 class="title rainbowtext">welcome to the wonderous website of<br><span class="headline">Ashton Havens</span></h1>
+        <h1 class="title rainbowtext">welcome to the wondrous website of<br><span class="headline">Ashton Havens</span></h1>
         <div id="me_img_container">
             <div id="me_img_stretch" style="width: 0px;"></div>
         </div>
@@ -53,82 +56,152 @@
                 <h1>About the Website</h1>
                 <p>
                     i created this website because i was bored<br><br>
-                    blog coming soon<br><br>
-                    theres a new one <a href='https://ashtonhavens.vercel.app'>here</a> check it out if you want
+                    whole thing is hashtag coderotted yo
+                </p>
+            </div>
+
+            <div>
+                <h1>Contact</h1>
+                <p>
+                    Questions? Email me at <button class="copy" onclick="copy_text('ashtonhavens00@gmail.com')">ashtonhavens00@gmail.com <i class="fa-regular fa-copy"></i></button> 
                 </p>
             </div>
 
             <div>
                 <h1>Follow Me</h1>
                 <p>
-                    <a href="https://www.instagram.com/ashtonnhavens" target="_blank"><img src="insta.png" height="50">my instagrasm</a><br>
-                    <a href="https://github.com/ashtonhavens" target="_blank"><img src="Github_logo_svg.png" height="50">my github</a><br>
+                    <a href="https://www.instagram.com/ashtonnhavens" target="_blank"><img src="insta.png" height="50"></a>
+                    <a href="https://github.com/ashtonhavens" target="_blank"><img src="Github_logo_svg.png" height="50"></a>
                 </p>
             </div>
         </main>
 
         <p id="copyright"></p>
+
+        <div id="cursormessage" class="rainbowborder"></div>
     </body>
 
     <script src="rainbowtext.js"></script>
 
     <script> /*----------------< ME IMAGE SLIDESHOW >-------------*/
 
-        {
-            const me_img_stretch = document.getElementById('me_img_stretch');
-            const me_img_container = document.getElementById('me_img_container');
-            const me_width = me_img_container.offsetHeight + 10;
+        const me_img_stretch = document.getElementById('me_img_stretch');
+        const me_img_container = document.getElementById('me_img_container');
+        const me_width = me_img_container.offsetHeight + 10;
 
-            const me_images = [
-                '1.jpg',
-                '2.jpg',
-                '3.jpg',
-                '4.jpg',
-                '5.jpg',
-                '6.jpg',
-                '7.jpg',
-                '8.jpg',
-                'IMG_3596.png',
-                '9 (1).png',
-                '9 (2).png',
-                '9 (4).png',
-                '9 (5).png',
-            ];
+        const me_images = [
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+            '4.jpg',
+            '5.jpg',
+            '6.jpg',
+            '7.jpg',
+            '8.jpg',
+            'IMG_3596.png',
+            '9 (1).png',
+            '9 (2).png',
+            '9 (4).png',
+            '9 (5).png',
+        ];
 
-            const refresh_images = () => {
-                me_img_stretch.style.width = `${me_width * me_images.length * 2}px`;
+        const refresh_images = () => {
+            me_img_stretch.style.width = `${me_width * me_images.length * 2}px`;
 
-                for (let _ in [0,0]) {
-                    for (let img_src of me_images) {
-                        me_img_stretch.innerHTML += `<div><img src="mes/${img_src}" width="100%" height="100%" /></div>`;
-                    }
+            for (let _ in [0,0]) {
+                for (let img_src of me_images) {
+                    me_img_stretch.innerHTML += `<div><img src="mes/${img_src}" width="100%" height="100%" /></div>`;
                 }
             }
-            refresh_images();
+        }
+        refresh_images();
 
 
-            const middle = me_width * me_images.length;
-            const end = me_width * me_images.length * 2 - innerWidth;
-            const loop = middle - innerWidth;
-            let current = middle;
-            me_img_container.scrollTo(middle, 0);
+        const middle = me_width * me_images.length;
+        
+        /*const loop = middle - innerWidth;
+        const end = me_width * me_images.length * 2 - innerWidth;
+        let current = middle;
+        me_img_container.scrollTo(middle, 0);
 
-            let oldtime = Date.now();
+        let oldtime = Date.now();
 
-            const move_slides = () => {
-                current += (Date.now()-oldtime) / 8 * ((Math.sin(Date.now() / 1000)) * 4 + 5);
-                if (current >= end) current = loop + current - end;
-                oldtime = Date.now();
+        const move_slides = () => {
+            current += (Date.now()-oldtime) / 8 * ((Math.sin(Date.now() / 1000)) * 4 + 5);
+            if (current >= end) current = loop + current - end;
+            oldtime = Date.now();
 
-                me_img_container.scrollTo(current, 0);
+            me_img_container.scrollTo(current, 0);
 
-                me_img_container.style.marginTop = `${100 + Math.sin(oldtime/500)*20}px`;
-                me_img_container.style.marginBottom = `${100 - Math.sin(oldtime/500)*20}px`;
+            me_img_container.style.marginTop = `${100 + Math.sin(oldtime/500)*20}px`;
+            me_img_container.style.marginBottom = `${100 - Math.sin(oldtime/500)*20}px`;
 
-                requestAnimationFrame(move_slides);
-            }
-            move_slides();
+            requestAnimationFrame(move_slides);
+        }
+        //move_slides();//*/
+
+
+        const half_width = innerWidth >> 1;
+
+        function better_move_slides() {
+            let time = Date.now() / 1000;
+            me_img_container.scrollTo((Math.sin(time * 2)*300 + time*1000) % middle + half_width, 0);
+
+            requestAnimationFrame(better_move_slides)
+        }
+        better_move_slides();
+    </script>
+
+    <script> /*-------------------------< HOVER TEXT >----------------------*/
+        const hover_ele = document.getElementById('cursormessage');
+        var sanity = 0;
+        let is_message_displayed = false;
+
+        var cursor_pos = [0, 0];
+
+        
+        addEventListener('mousemove', e => {
+            cursor_pos = [e.x, e.y];
+        })
+
+        function upd_message_pos() {
+            hover_ele.style.top = `${cursor_pos[1] + scrollY}px`;
+            hover_ele.style.left = `${cursor_pos[0] + scrollX}px`;
+        }
+    
+        function invoke_message(text, length=2000) {
+            sanity += 1;
+            let cs = sanity;
+
+            is_message_displayed = true;
+
+            upd_message_pos();
+            hover_ele.innerText = text;
+            hover_ele.style.display = 'block';
+
+            setTimeout(() => {
+                if (sanity === cs) {
+                    hover_ele.style.display = 'none';
+                    is_message_displayed = false;
+                    sanity = 0;
+                }
+            }, length);
         }
 
+        function frame() {
+            if (is_message_displayed) {
+                upd_message_pos();
+            }
+            requestAnimationFrame(frame);
+        }
+        frame();
+    </script>
+
+    <script> /*-------------------< COPY TEXT >------------------------*/
+        function copy_text(text) {
+            navigator.clipboard.writeText(text).then(()=>{
+                invoke_message(`copied to clipboard!${sanity === 0 ? '' : ' (x'+(sanity+1)+')'}`)
+            });
+        }
     </script>
 </html>

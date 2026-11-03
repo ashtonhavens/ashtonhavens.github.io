@@ -44,5 +44,34 @@ main > div {
 }
 
 #copyright::before {
-    content: 'copyright ashton havens 1997 all rights reserved';
+    content: 'copyright ashton havens 2026 all rights reserved';
+}
+
+
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    outline: inherit;
+}
+
+button.copy {
+    cursor: copy;
+}
+button.copy:hover {
+    font-style: italic;
+}
+
+
+#cursormessage {
+    display: none;
+    position: absolute;
+    background-color: black;
+    border: 2px white solid;
+
+    pointer-events: none;
+    padding: 8px 10px 8px 10px;
 }

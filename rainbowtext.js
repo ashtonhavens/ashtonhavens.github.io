@@ -1,6 +1,6 @@
 {
     const text_items = document.getElementsByClassName('rainbowtext');
-    const border_items = document.getElementsByTagName('main')[0]?.children;
+    const border_items = [...document.getElementsByTagName('main')[0]?.children, ...document.getElementsByClassName('rainbowborder')];
 
     const s = 1;
     let rgb = [0, 0, 0];
@@ -23,7 +23,7 @@
             }
         }
         if (border_items) for (let item of border_items) {
-            item.style.border = `5px rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]}) solid`;
+            item.style.borderColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
         }
 
         oldtime = Date.now();
