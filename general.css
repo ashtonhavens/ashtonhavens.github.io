@@ -44,7 +44,7 @@ main > div {
 }
 
 #copyright::before {
-    content: 'copyright ashton havens 2026 all rights reserved';
+    /*content: 'copyright ashton havens 2026 all rights reserved';*/
 }
 
 
