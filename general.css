@@ -22,9 +22,8 @@ hr {
 /*------------------------< MAIN >------------------------*/
 
 main {
-    width: 50%;
-    margin-left: calc(25% - 10px - 5px);
-    margin-bottom: 90px;
+    max-width: 1000px;
+    margin: auto;
 }
 main > div {
     margin-bottom: 40px;
